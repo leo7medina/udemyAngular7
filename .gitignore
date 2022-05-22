@@ -1,31 +1,5 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@leo7medina 
-leo7medina
-/
-test-angular
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-test-angular/app-testing/.gitignore
-@leo7medina
-leo7medina save changes
-Latest commit be39c37 on Jan 19
- History
- 1 contributor
-42 lines (36 sloc)  544 Bytes
+.vscode
+node_modules/
   
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
@@ -37,6 +11,8 @@ Latest commit be39c37 on Jan 19
 
 # dependencies
 /node_modules
+.node_modules
+node_modules/
 
 # IDEs and editors
 /.idea
