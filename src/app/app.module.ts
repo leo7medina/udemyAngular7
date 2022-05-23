@@ -16,7 +16,6 @@ import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatDatepickerModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DetalleComponent } from './clientes/detalle/detalle.component';
 import { LoginComponent } from './usuarios/login.component';
@@ -25,6 +24,7 @@ import { RoleGuard } from './usuarios/guard/role.guard';
 import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { DetalleFacturaComponent } from './facturas/detalle-factura/detalle-factura.component';
 import { FacturasComponent } from './facturas/facturas.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 registerLocaleData(localeES, 'es');
 

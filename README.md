@@ -1,4 +1,9 @@
-# ClientesApp
+# App Clientes
+
+Proyecto realizado en angular 7 y actualizado ha angular 13.
+
+ESTADO: FINALIZADO
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
 

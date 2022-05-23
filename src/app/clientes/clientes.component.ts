@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../usuarios/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clientes',
@@ -54,17 +55,16 @@ export class ClientesComponent implements OnInit {
   }
 
   delete(cliente: Cliente): void {
-    swal({
+    Swal.fire({
       title: 'Está seguro?',
       text: `¿Seguro que desea eliminar al cliente ${cliente.nombre} ${cliente.apellido}?`,
-      type: 'warning',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      showConfirmButton: true,
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar!',
-      cancelButtonText: 'No, cancelar!',
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Si, eliminar!',
+      confirmButtonText: 'No, cancelar!',
       buttonsStyling: false,
       reverseButtons: true
     }).then((result) => {
@@ -73,7 +73,7 @@ export class ClientesComponent implements OnInit {
         this.clienteService.delete(cliente.id).subscribe(
           () => {
             this.clientes = this.clientes.filter(cli => cli !== cliente)
-            swal(
+            Swal.fire(
               'Cliente Eliminado!',
               `Cliente ${cliente.nombre} eliminado con éxito.`,
               'success'
@@ -88,6 +88,14 @@ export class ClientesComponent implements OnInit {
   abrirModal(cliente: Cliente) {
     this.clienteSeleccionado = cliente;
     this.modalService.abrirModal();
+  }
+
+  hasRoleAdmin() {
+    return this.authService.hasRole('ROLE_ADMIN')
+  }
+
+  hasRoleUser() {
+    return this.authService.hasRole('ROLE_USER')
   }
 
 }

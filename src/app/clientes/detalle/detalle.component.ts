@@ -3,12 +3,11 @@ import { Cliente } from '../modelos/cliente';
 import { ClienteService } from '../cliente.service';
 import { ModalService } from './modal.service';
 
-import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
 import { AuthService } from './../../usuarios/auth.service';
 
 import { FacturasService } from '../../facturas/services/facturas.service';
-import { Factura } from '../../facturas/models/factura';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'detalle-cliente',
@@ -35,7 +34,7 @@ export class DetalleComponent implements OnInit {
     this.progreso = 0;
     console.log(this.fotoSeleccionada);
     if (this.fotoSeleccionada.type.indexOf('image') < 0) {
-      swal('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
+      Swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
       this.fotoSeleccionada = null;
     }
   }
@@ -43,7 +42,7 @@ export class DetalleComponent implements OnInit {
   subirFoto() {
 
     if (!this.fotoSeleccionada) {
-      swal('Error Upload: ', 'Debe seleccionar una foto', 'error');
+      Swal.fire('Error Upload: ', 'Debe seleccionar una foto', 'error');
     } else {
       this.clienteService.subirFoto(this.fotoSeleccionada, this.cliente.id)
         .subscribe(event => {
@@ -54,7 +53,7 @@ export class DetalleComponent implements OnInit {
             this.cliente = response.cliente as Cliente;
 
             this.modalService.notificarUpload.emit(this.cliente);
-            swal('La foto se ha subido completamente!', response.mensaje, 'success');
+            Swal.fire('La foto se ha subido completamente!', response.mensaje, 'success');
           }
         });
     }
@@ -64,6 +63,14 @@ export class DetalleComponent implements OnInit {
     this.modalService.cerrarModal();
     this.fotoSeleccionada = null;
     this.progreso = 0;
+  }
+
+  isModal() {
+    return this.modalService.modal;
+  }
+
+  hasRoleAdmin() {
+    return this.authService.hasRole('ROLE_ADMIN');
   }
 
 }

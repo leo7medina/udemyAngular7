@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../modelos/cliente';
 import { ClienteService } from '../cliente.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import swal from 'sweetalert2';
 import { Region } from '../modelos/region';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -11,7 +11,7 @@ import { Region } from '../modelos/region';
 })
 export class FormComponent implements OnInit {
 
-  private cliente: Cliente = new Cliente();
+  cliente: Cliente = new Cliente();
   regiones: Region[];
   titulo: string = "Crear Cliente";
 
@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
       .subscribe(
         cliente => {
           this.router.navigate(['/clientes']);
-          swal('Nuevo cliente', `El cliente ${cliente.nombre} ha sido creado con éxito`, 'success');
+          Swal.fire('Nuevo cliente', `El cliente ${cliente.nombre} ha sido creado con éxito`, 'success');
         },
         err => {
           this.errores = err.error.errors as string[];
@@ -52,7 +52,7 @@ export class FormComponent implements OnInit {
       .subscribe(
         json => {
           this.router.navigate(['/clientes']);
-          swal('Cliente Actualizado', `${json.mensaje}: ${json.cliente.nombre}`, 'success');
+          Swal.fire('Cliente Actualizado', `${json.mensaje}: ${json.cliente.nombre}`, 'success');
         },
         err => {
           this.errores = err.error.errors as string[];

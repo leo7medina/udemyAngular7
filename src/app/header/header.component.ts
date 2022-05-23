@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../usuarios/auth.service';
-import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +12,12 @@ export class HeaderComponent {
   constructor(private authService: AuthService, private router:Router){}
 
   logout():void {
-    swal('Logout',`Hola ${this.authService.usuario.username}, has cerrado sesión con éxito!`,'success');
+    Swal.fire('Logout',`Hola ${this.authService.usuario.username}, has cerrado sesión con éxito!`,'success');
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 }
